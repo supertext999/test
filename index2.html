@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测测你是《甄嬛传》里的谁</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "KaiTi", "STKaiti", serif;
+        }
+        body {
+            background: #f6efe5 url('https://pic.616pic.com/ys_bnew_img/00/15/17/9wYbZJ3YlY.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            color: #4b2c2c;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255,252,246,0.92);
+            border: 2px solid #9c7451;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 0 18px #c8b092;
+        }
+        h1 {
+            text-align: center;
+            color: #8c3b3b;
+            font-size: 32px;
+            margin-bottom: 10px;
+            letter-spacing: 4px;
+        }
+        .desc {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+            color: #664444;
+        }
+        .q-item {
+            margin-bottom: 26px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #d4c2b0;
+        }
+        .question {
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        .opt-item {
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: 0.25s;
+        }
+        .opt-item:hover {
+            background-color: #efe2d2;
+        }
+        input[type=radio] {
+            margin-right: 8px;
+        }
+        .btn-wrap {
+            text-align: center;
+            margin: 30px 0;
+        }
+        #submitBtn {
+            padding: 12px 40px;
+            font-size: 20px;
+            background: #9c4242;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: "KaiTi";
+        }
+        #submitBtn:hover {
+            background: #7a2f2f;
+        }
+        #resultBox {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #b89b7f;
+        }
+        .role-name {
+            font-size: 28px;
+            color: #8c3b3b;
+            margin-bottom: 12px;
+        }
+        .role-desc {
+            font-size: 17px;
+            line-height: 1.8;
+            padding: 0 20px;
+        }
+        .reset-btn {
+            margin-top:24px;
+            padding: 8px 26px;
+            font-size:17px;
+            background:#b4855f;
+            color:white;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>测测你是甄嬛传中的谁</h1>
+    <p class="desc">静心作答，来看你是深宫之中哪一位人物</p>
+
+    <div id="quizBox">
+        <div class="q-item">
+            <div class="question">1. 朋友当众开让你难堪的玩笑，你会？</div>
+            <div class="opt-item"><input type="radio" name="q1" value="A"> A. 不动声色记下，之后找机会委婉回敬</div>
+            <div class="opt-item"><input type="radio" name="q1" value="B"> B. 当场直接说自己不舒服，制止对方</div>
+            <div class="opt-item"><input type="radio" name="q1" value="C"> C. 笑着打圆场，不想把气氛搞僵</div>
+        </div>
+        <div class="q-item">
+            <div class="question">2. 发现喜欢的人同时对别人很好，你会？</div>
+            <div class="opt-item"><input type="radio" name="q2" value="A"> A. 慢慢观察，确认真心再决定要不要继续</div>
+            <div class="opt-item"><input type="radio" name="q2" value="B"> B. 权衡利弊，看看这段关系能给你带来什么</div>
+            <div class="opt-item"><input type="radio" name="q2" value="C"> C. 只要对方愿意陪着你，就可以接受</div>
+        </div>
+        <div class="q-item">
+            <div class="question">3. 身边要好的人遇到大麻烦来找你求助，你？</div>
+            <div class="opt-item"><input type="radio" name="q3" value="A"> A. 尽力帮他想办法，陪他一起扛</div>
+            <div class="opt-item"><input type="radio" name="q3" value="B"> B. 先评估风险，不把自己卷进去</div>
+            <div class="opt-item"><input type="radio" name="q3" value="C"> C. 心里着急，但能力有限，只能安慰</div>
+        </div>
+        <div class="q-item">
+            <div class="question">4. 团队一起做项目，功劳被别人抢走，你？</div>
+            <div class="opt-item"><input type="radio" name="q4" value="A"> A. 收集证据，找合适时机澄清拿回属于自己的</div>
+            <div class="opt-item"><input type="radio" name="q4" value="B"> B. 直接当众说明，不愿意默默吃亏</div>
+            <div class="opt-item"><input type="radio" name="q4" value="C"> C. 算了，多一事不如少一事</div>
+        </div>
+        <div class="q-item">
+            <div class="question">5. 有机会拿到一个含金量很高的位置，代价是要踩别人，你？</div>
+            <div class="opt-item"><input type="radio" name="q5" value="A"> A. 拿到之后用来保护自己在意的人</div>
+            <div class="opt-item"><input type="radio" name="q5" value="B"> B. 抓住机会，扫清阻碍自己的人</div>
+            <div class="opt-item"><input type="radio" name="q5" value="C"> C. 不想卷，宁愿安稳待在原地</div>
+        </div>
+        <div class="q-item">
+            <div class="question">6. 被别人误会，大家都在背后议论你，你？</div>
+            <div class="opt-item"><input type="radio" name="q6" value="A"> A. 慢慢等合适时机拿出证据自证</div>
+            <div class="opt-item"><input type="radio" name="q6" value="B"> B. 立刻找当事人辩解，情绪容易上头</div>
+            <div class="opt-item"><input type="radio" name="q6" value="C"> C. 懒得解释，任由别人怎么想</div>
+        </div>
+        <div class="q-item">
+            <div class="question">7. 曾经坑过你的人，现在落魄回头找你帮忙，你？</div>
+            <div class="opt-item"><input type="radio" name="q7" value="A"> A. 不会帮，也不会主动去落井下石</div>
+            <div class="opt-item"><input type="radio" name="q7" value="B"> B. 有机会的话，会让他尝尝当初的滋味</div>
+            <div class="opt-item"><input type="radio" name="q7" value="C"> C. 心软，不忍心看着对方为难</div>
+        </div>
+        <div class="q-item">
+            <div class="question">8. 休息日，你更愿意怎么度过？</div>
+            <div class="opt-item"><input type="radio" name="q8" value="A"> A. 独自出门散心，找安静地方放空</div>
+            <div class="opt-item"><input type="radio" name="q8" value="B"> B. 参加饭局社交，拓展人脉，提升自己</div>
+            <div class="opt-item"><input type="radio" name="q8" value="C"> C. 和少数信任的朋友小聚闲聊</div>
+        </div>
+        <div class="q-item">
+            <div class="question">9. 别人夸你优秀好看，你一般？</div>
+            <div class="opt-item"><input type="radio" name="q9" value="A"> A. 从容道谢，坦然接受赞美</div>
+            <div class="opt-item"><input type="radio" name="q9" value="B"> B. 心里很开心，愿意多享受这份认可</div>
+            <div class="opt-item"><input type="radio" name="q9" value="C"> C. 连忙推辞，觉得对方只是客气</div>
+        </div>
+        <div class="q-item">
+            <div class="question">10. 看到别人拥有你一直想要的东西，你会？</div>
+            <div class="opt-item"><input type="radio" name="q10" value="A"> A. 祝福对方，自己继续努力争取</div>
+            <div class="opt-item"><input type="radio" name="q10" value="B"> B. 心里有点不平衡，会暗自比较</div>
+            <div class="opt-item"><input type="radio" name="q10" value="C"> C. 容易耿耿于怀，很久放不下</div>
+        </div>
+        <div class="q-item">
+            <div class="question">11. 不得不参加全是客套寒暄的应酬局，你？</div>
+            <div class="opt-item"><input type="radio" name="q11" value="A"> A. 礼貌应付，心里清楚哪些是虚情假意</div>
+            <div class="opt-item"><input type="radio" name="q11" value="B"> B. 浑身不自在，不想伪装，想早点走</div>
+            <div class="opt-item"><input type="radio" name="q11" value="C"> C. 紧张局促，不知道怎么接话</div>
+        </div>
+        <div class="q-item">
+            <div class="question">12. 为了守护很重要的人，需要你付出很大代价，你？</div>
+            <div class="opt-item"><input type="radio" name="q12" value="A"> A. 愿意承担，心甘情愿</div>
+            <div class="opt-item"><input type="radio" name="q12" value="B"> B. 权衡代价，不会盲目牺牲自己</div>
+            <div class="opt-item"><input type="radio" name="q12" value="C"> C. 优先保全自己，很难做到牺牲</div>
+        </div>
+        <div class="q-item">
+            <div class="question">13. 小组讨论，大家意见很乱，你更偏向？</div>
+            <div class="opt-item"><input type="radio" name="q13" value="A"> A. 梳理思路，给大家出可行方案</div>
+            <div class="opt-item"><input type="radio" name="q13" value="B"> B. 定方向，推动所有人按你的想法走</div>
+            <div class="opt-item"><input type="radio" name="q13" value="C"> C. 跟着大家走，配合安排就好</div>
+        </div>
+        <div class="q-item">
+            <div class="question">14. 相处久了，你发现一个曾经很友善的人其实很自私，你？</div>
+            <div class="opt-item"><input type="radio" name="q14" value="A"> A. 保持距离，不再毫无保留信任</div>
+            <div class="opt-item"><input type="radio" name="q14" value="B"> B. 理解人性本就趋利，不会意外</div>
+            <div class="opt-item"><input type="radio" name="q14" value="C"> C. 很难接受，还是愿意相信他有善意</div>
+        </div>
+        <div class="q-item">
+            <div class="question">15. 偶然得知别人的秘密，这个秘密可以用来自保，你？</div>
+            <div class="opt-item"><input type="radio" name="q15" value="A"> A. 悄悄记着，只在被威胁的时候拿出来自保</div>
+            <div class="opt-item"><input type="radio" name="q15" value="B"> B. 合适的时候直接曝光，一次性解决对手</div>
+            <div class="opt-item"><input type="radio" name="q15" value="C"> C. 不想掺和，假装没听见</div>
+        </div>
+        <div class="q-item">
+            <div class="question">16. 生活里很多事不由自己做主，你会？</div>
+            <div class="opt-item"><input type="radio" name="q16" value="A"> A. 被迫接受，但心里一直不甘心</div>
+            <div class="opt-item"><input type="radio" name="q16" value="B"> B. 不愿妥协，宁可放弃也不将就</div>
+            <div class="opt-item"><input type="radio" name="q16" value="C"> C. 习惯了，顺着安排走</div>
+        </div>
+        <div class="q-item">
+            <div class="question">17. 遇到新人或者处境弱势的人，你一般？</div>
+            <div class="opt-item"><input type="radio" name="q17" value="A"> A. 愿意提点，温柔照顾对方</div>
+            <div class="opt-item"><input type="radio" name="q17" value="B"> B. 看对方有没有价值，再决定态度</div>
+            <div class="opt-item"><input type="radio" name="q17" value="C"> C. 保持距离，不多来往</div>
+        </div>
+        <div class="q-item">
+            <div class="question">18. 下面哪一件事最容易让你彻底心寒？</div>
+            <div class="opt-item"><input type="radio" name="q18" value="A"> A. 真心交付，最后被辜负背叛</div>
+            <div class="opt-item"><input type="radio" name="q18" value="B"> B. 属于你的位置、话语权被夺走</div>
+            <div class="opt-item"><input type="radio" name="q18" value="C"> C. 被人轻视、看不起</div>
+        </div>
+        <div class="q-item">
+            <div class="question">19. 一件大事很难抉择，你通常？</div>
+            <div class="opt-item"><input type="radio" name="q19" value="A"> A. 多方打听，收集信息慢慢权衡</div>
+            <div class="opt-item"><input type="radio" name="q19" value="B"> B. 跟着自己的野心和直觉做决定</div>
+            <div class="opt-item"><input type="radio" name="q19" value="C"> C. 找信任的人帮你拿主意</div>
+        </div>
+        <div class="q-item">
+            <div class="question">20. 很久不联系的旧友来找你，你会？</div>
+            <div class="opt-item"><input type="radio" name="q20" value="A"> A. 念旧，还记得当初的情谊</div>
+            <div class="opt-item"><input type="radio" name="q20" value="B"> B. 如果对方阻碍你现在的路，可以疏远舍弃</div>
+            <div class="opt-item"><input type="radio" name="q20" value="C"> C. 怀念过去，但明白回不去了</div>
+        </div>
+        <div class="q-item">
+            <div class="question">21. 一个平时不熟的人主动对你示好，你第一反应？</div>
+            <div class="opt-item"><input type="radio" name="q21" value="A"> A. 先观察，分辨是真心还是有所求</div>
+            <div class="opt-item"><input type="radio" name="q21" value="B"> B. 顺势接纳，看看能不能互相利用</div>
+            <div class="opt-item"><input type="radio" name="q21" value="C"> C. 很开心，愿意相信对方是善意的</div>
+        </div>
+        <div class="q-item">
+            <div class="question">22. 许愿时，你更偏向想要？</div>
+            <div class="opt-item"><input type="radio" name="q22" value="A"> A. 看透人心的智慧，不被人蒙骗</div>
+            <div class="opt-item"><input type="radio" name="q22" value="B"> B. 足够高的地位，没人敢欺负你</div>
+            <div class="opt-item"><input type="radio" name="q22" value="C"> C. 安稳平静，少遇到麻烦是非</div>
+        </div>
+        <div class="q-item">
+            <div class="question">23. 为了保护身边人，需要你说一个不小的谎话，你？</div>
+            <div class="opt-item"><input type="radio" name="q23" value="A"> A. 会，只要能护住对方就愿意说</div>
+            <div class="opt-item"><input type="radio" name="q23" value="B"> B. 风险太大就不愿意，自保优先</div>
+            <div class="opt-item"><input type="radio" name="q23" value="C"> C. 很难说谎，容易紧张露馅</div>
+        </div>
+        <div class="q-item">
+            <div class="question">24. 和别人竞争同一个机会，对方手段不太光彩，你？</div>
+            <div class="opt-item"><input type="radio" name="q24" value="A"> A. 守住底线，用正当方式争取</div>
+            <div class="opt-item"><input type="radio" name="q24" value="B"> B. 对方不择手段，那你也不必客气</div>
+            <div class="opt-item"><input type="radio" name="q24" value="C"> C. 不想争斗，干脆放弃机会</div>
+        </div>
+        <div class="q-item">
+            <div class="question">25. 发现身边人悄悄在背后议论你，你？</div>
+            <div class="opt-item"><input type="radio" name="q25" value="A"> A. 默默留意，提防这个人</div>
+            <div class="opt-item"><input type="radio" name="q25" value="B"> B. 直接去找对方对峙</div>
+            <div class="opt-item"><input type="radio" name="q25" value="C"> C. 假装不知道，心里很难受</div>
+        </div>
+        <div class="q-item">
+            <div class="question">26. 计划好的事情突然被别人打乱，你？</div>
+            <div class="opt-item"><input type="radio" name="q26" value="A"> A. 冷静重新规划，调整方案</div>
+            <div class="opt-item"><input type="radio" name="q26" value="B"> B. 很烦躁，会直接表达不满</div>
+            <div class="opt-item"><input type="radio" name="q26" value="C"> C. 手足无措，跟着变化走</div>
+        </div>
+        <div class="q-item">
+            <div class="question">27. 你更喜欢哪种相处模式？</div>
+            <div class="opt-item"><input type="radio" name="q27" value="A"> A. 彼此有分寸，互相尊重，长久舒服</div>
+            <div class="opt-item"><input type="radio" name="q27" value="B"> B. 强弱分明，有主导者、有服从者</div>
+            <div class="opt-item"><input type="radio" name="q27" value="C"> C. 毫无保留，亲密黏在一起</div>
+        </div>
+        <div class="q-item">
+            <div class="question">28. 别人拜托你一件你不想做的事，你？</div>
+            <div class="opt-item"><input type="radio" name="q28" value="A"> A. 委婉找理由拒绝，不得罪人</div>
+            <div class="opt-item"><input type="radio" name="q28" value="B"> B. 直接说不行，不勉强自己</div>
+            <div class="opt-item"><input type="radio" name="q28" value="C"> C. 不好意思拒绝，勉强答应</div>
+        </div>
+        <div class="q-item">
+            <div class="question">29. 走在路上看到有人被为难，你？</div>
+            <div class="opt-item"><input type="radio" name="q29" value="A"> A. 看情况，合适就悄悄帮忙解围</div>
+            <div class="opt-item"><input type="radio" name="q29" value="B"> B. 觉得事不关己，不掺和</div>
+            <div class="opt-item"><input type="radio" name="q29" value="C"> C. 想帮，但害怕惹麻烦，不敢上前</div>
+        </div>
+        <div class="q-item">
+            <div class="question">30. 当你过得很好，身边有人酸你，你？</div>
+            <div class="opt-item"><input type="radio" name="q30" value="A"> A. 淡然无视，继续过自己的日子</div>
+            <div class="opt-item"><input type="radio" name="q30" value="B"> B. 会反击，让对方收敛一点</div>
+            <div class="opt-item"><input type="radio" name="q30" value="C"> C. 心里会难过，怀疑自己是不是太高调</div>
+        </div>
+        <div class="q-item">
+            <div class="question">31. 你更愿意相信哪一种说法？</div>
+            <div class="opt-item"><input type="radio" name="q31" value="A"> A. 害人之心不可有，防人之心不可无</div>
+            <div class="opt-item"><input type="radio" name="q31" value="B"> B. 人善被人欺，厉害一点才能自保</div>
+            <div class="opt-item"><input type="radio" name="q31" value="C"> C. 真诚待人，总会遇到善意</div>
+        </div>
+        <div class="q-item">
+            <div class="question">32. 有机会远离复杂的人际圈子，你？</div>
+            <div class="opt-item"><input type="radio" name="q32" value="A"> A. 愿意，喜欢清净简单的环境</div>
+            <div class="opt-item"><input type="radio" name="q32" value="B"> B. 不想离开，圈子里才有机会</div>
+            <div class="opt-item"><input type="radio" name="q32" value="C"> C. 有点向往，但没有勇气离开</div>
+        </div>
+        <div class="q-item">
+            <div class="question">33. 和亲近的人产生巨大矛盾，你会？</div>
+            <div class="opt-item"><input type="radio" name="q33" value="A"> A. 冷静下来，慢慢沟通修复</div>
+            <div class="opt-item"><input type="radio" name="q33" value="B"> B. 争吵摊牌，把话说开，不行就分开</div>
+            <div class="opt-item"><input type="radio" name="q33" value="C"> C. 独自难过，等着对方先来哄你</div>
+        </div>
+        <div class="q-item">
+            <div class="question">34. 你发现信任的人对你有所隐瞒，你？</div>
+            <div class="opt-item"><input type="radio" name="q34" value="A"> A. 不动声色观察，慢慢确认真相</div>
+            <div class="opt-item"><input type="radio" name="q34" value="B"> B. 直接质问，要一个说法</div>
+            <div class="opt-item"><input type="radio" name="q34" value="C"> C. 不愿意多想，宁愿相信他有苦衷</div>
+        </div>
+        <div class="q-item">
+            <div class="question">35. 做选择的时候，你优先考虑？</div>
+            <div class="opt-item"><input type="radio" name="q35" value="A"> A. 长远的利弊，稳一点更好</div>
+            <div class="opt-item"><input type="radio" name="q35" value="B"> B. 自己想要什么，跟着心意走</div>
+            <div class="opt-item"><input type="radio" name="q35" value="C"> C. 会不会让别人不满意</div>
+        </div>
+        <div class="q-item">
+            <div class="question">36. 如果可以，你希望别人怎么看待你？</div>
+            <div class="opt-item"><input type="radio" name="q36" value="A"> A. 聪慧通透，不好糊弄</div>
+            <div class="opt-item"><input type="radio" name="q36" value="B"> B. 有实力，不能轻易得罪</div>
+            <div class="opt-item"><input type="radio" name="q36" value="C"> C. 温和无害，让人安心</div>
+        </div>
+
+        <div class="btn-wrap">
+            <button id="submitBtn">查看结果</button>
+        </div>
+    </div>
+
+    <div id="resultBox">
+        <div class="role-name" id="roleName"></div>
+        <div class="role-desc" id="roleDesc"></div>
+        <button class="reset-btn" onclick="resetQuiz()">重新测试</button>
+    </div>
+</div>
+
+<script>
+// 24个角色，按性格梯度排序，贴合原剧人设
+const roleList = [
+    {
+        name:"淳儿（方淳意）",
+        desc:"心思纯粹简单，没有城府，对世界抱着善意。爱吃爱笑，不懂得人心险恶，待人毫无防备，像不染尘埃的小太阳，只是这份天真在复杂环境里格外易碎。"
+    },
+    {
+        name:"瑛贵人",
+        desc:"性情温柔安静，品性干净，没有争权夺利之心。身不由己，命运漂泊，不擅长算计，只想安稳度日，奈何身处漩涡，容易无辜被风波裹挟。"
+    },
+    {
+        name:"芝答应",
+        desc:"性子温顺谨慎，没有锋芒，习惯依附他人。不主动招惹是非，所求不多，只求安稳活下去，在人群里不起眼，随波逐流。"
+    },
+    {
+        name:"温实初",
+        desc:"仁厚心软，重情重诺，医者本心。习惯默默守护在意之人，愿意为情义承担风险，不擅长勾心斗角，容易被人情羁绊。"
+    },
+    {
+        name:"流朱",
+        desc:"赤诚热烈，忠心不二。爱恨直白，护主心切，没有弯弯绕绕，认定一个人就全心相待，性子直率，愿意为守护之人挺身而出。"
+    },
+    {
+        name:"玉娆",
+        desc:"明媚傲骨，通透清醒。看透虚情假意与荣华枷锁，不愿做笼中雀，坚持要独一无二的真心，敢拒绝强权，忠于本心。"
+    },
+    {
+        name:"沈眉庄",
+        desc:"大家闺秀，风骨清高。待人真诚，重情义，一旦看清凉薄便心灰意冷，不愿违心周旋，有自己的底线，宁守本心，不勉强逢迎。"
+    },
+    {
+        name:"敬妃",
+        desc:"稳重克制，懂得藏拙自保。性情温和，不主动挑事，知恩图报，审时度势，擅长在暗流里守住自己一方安稳，是清醒稳妥之人。"
+    },
+    {
+        name:"欣贵人",
+        desc:"心直口快，拎得清是非。本性不坏，不主动害人，懂得审时度势，看准可以依靠的人，懂得自保，不贪心，安稳自持。"
+    },
+    {
+        name:"果郡王允礼",
+        desc:"潇洒浪漫，厌恶朝堂算计。看重真心与自由，用情至深，愿意为所爱之人赌上性命，不看重权势荣华，浪漫却也容易被时局拖累。"
+    },
+    {
+        name:"浣碧",
+        desc:"骄傲敏感，不甘于现状。内心矛盾，一边亲近亲人，一边被不甘和攀比折磨，渴望名分与偏爱，一生都在追逐不属于自己的东西。"
+    },
+    {
+        name:"端妃",
+        desc:"沉静隐忍，冷眼观局。看透宫中所有阴谋，不争不抢，擅长蛰伏等待时机，心思通透，看透人性，不轻易展露锋芒。"
+    },
+    {
+        name:"崔槿汐",
+        desc:"阅尽世事，老练沉稳，眼光毒辣。懂权衡、知进退，忠心有分寸，善于谋划，是靠谱的智囊，懂得在复杂环境里保全自己和主子。"
+    },
+    {
+        name:"苏培盛",
+        desc:"八面玲珑，深谙人心。看得懂局势，懂得审时度势，看似圆滑，内心也看重情义，有自己的底线，在深宫之中活得通透。"
+    },
+    {
+        name:"甄嬛（前期）",
+        desc:"温婉聪慧，向往真心，起初只想求一人相守。心思细腻，待人柔软，有灵气，有底线，不愿主动害人，在变故来临前，尚有一份天真。"
+    },
+    {
+        name:"甄嬛（钮祜禄·甄嬛）",
+        desc:"历经背叛与失去之后彻底蜕变。聪慧隐忍，谋定而后动，爱恨分明，懂得保护自己与珍视之人，目标清晰，城府深沉，心中仍留情义底线。"
+    },
+    {
+        name:"安陵容",
+        desc:"出身卑微，骨子里藏着深深自卑与敏感。渴望被认可，容易被嫉妒裹挟，内心矛盾挣扎，一路身不由己，是环境催生出来的悲剧。"
+    },
+    {
+        name:"曹琴默（曹贵人）",
+        desc:"聪慧隐忍，擅长借刀杀人。为了女儿在夹缝里周旋，心思诡诈，步步算计，可内心始终恐惧不安，被亲情和危机困住。"
+    },
+    {
+        name:"齐妃",
+        desc:"见识浅薄，爱子心切，头脑简单。容易被别人拿捏，心思藏不住，所有的慌张与算计都摆在明面上，可怜又可悲。"
+    },
+    {
+        name:"祺贵人",
+        desc:"心气高傲，骄纵冲动，城府不足。依仗家世，容易被挑唆，行事莽撞，不懂收敛，一腔傲气，最后栽在自己的鲁莽上。"
+    },
+    {
+        name:"华妃（年世兰）",
+        desc:"明艳张扬，爱恨热烈偏执。骄纵跋扈，爱意浓烈，所有喜怒都写在脸上，敢争敢抢，被情爱蒙蔽，直到最后才知晓残酷真相。"
+    },
+    {
+        name:"叶澜依（宁嫔）",
+        desc:"野性桀骜，不屑荣华富贵。心中只守一份执念，厌恶虚伪与皇权，不受规矩束缚，敢怒敢言，为心中所愿不惜赌上性命。"
+    },
+    {
+        name:"乌拉那拉·宜修（皇后）",
+        desc:"表面宽厚仁慈，内心积怨深重。困在执念里，为守住后位不择手段，善于伪装，步步布局，恨意掩盖了所有温情。"
+    },
+    {
+        name:"雍正皇帝",
+        desc:"心思深沉多疑，凉薄克制。皇权永远排在第一位，欣赏才情与温柔，偏爱白月光的影子，可以施舍恩宠，却很难交付全然真心。"
+    }
+];
+
+// 36~108，重新划分24段，贴合人设梯度，不再均分
+const scoreMap = [
+    {min:36,max:38,idx:0},
+    {min:39,max:41,idx:1},
+    {min:42,max:44,idx:2},
+    {min:45,max:47,idx:3},
+    {min:48,max:50,idx:4},
+    {min:51,max:53,idx:5},
+    {min:54,max:56,idx:6},
+    {min:57,max:59,idx:7},
+    {min:60,max:62,idx:8},
+    {min:63,max:65,idx:9},
+    {min:66,max:68,idx:10},
+    {min:69,max:71,idx:11},
+    {min:72,max:74,idx:12},
+    {min:75,max:77,idx:13},
+    {min:78,max:80,idx:14},
+    {min:81,max:84,idx:15},
+    {min:85,max:87,idx:16},
+    {min:88,max:90,idx:17},
+    {min:91,max:93,idx:18},
+    {min:94,max:96,idx:19},
+    {min:97,max:99,idx:20},
+    {min:100,max:102,idx:21},
+    {min:103,max:105,idx:22},
+    {min:106,max:108,idx:23}
+];
+
+document.getElementById('submitBtn').onclick = function(){
+    let total = 0;
+    for(let i=1;i<=36;i++){
+        let radio = document.querySelector(`input[name="q${i}"]:checked`);
+        if(!radio){
+            alert("请完成全部36道题目！");
+            return;
+        }
+        let val = radio.value;
+        if(val==='A') total +=1;
+        else if(val==='B') total +=2;
+        else if(val==='C') total +=3;
+    }
+
+    let targetIdx = 0;
+    for(let s of scoreMap){
+        if(total >= s.min && total <= s.max){
+            targetIdx = s.idx;
+            break;
+        }
+    }
+
+    let res = roleList[targetIdx];
+    document.getElementById('quizBox').style.display = 'none';
+    document.getElementById('resultBox').style.display = 'block';
+    document.getElementById('roleName').innerText = res.name;
+    document.getElementById('roleDesc').innerText = res.desc;
+}
+
+function resetQuiz(){
+    document.querySelectorAll('input[type=radio]').forEach(i=>i.checked=false);
+    document.getElementById('quizBox').style.display = 'block';
+    document.getElementById('resultBox').style.display = 'none';
+}
+</script>
+</body>
+</html>
